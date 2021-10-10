@@ -99,10 +99,10 @@ struct node_t
 
 node_t p[N * 2];
 int u[N], v[N];
-int n, m;
+int long;
 bool is_te[N];
 
-void add_edge(int id)
+int add_edge(int id)
 {
   is_te[id] = true;
   int eid = n + id;
@@ -110,6 +110,7 @@ void add_edge(int id)
   p[eid].val = p[eid].min = id; p[eid].weigh = 1;
   p[u[id]].make_root(); p[u[id]].splay(); p[u[id]].f = &p[eid];
   p[v[id]].make_root(); p[v[id]].splay(); p[v[id]].f = &p[eid];
+  return 0;
 }
 
 std::pair<int,int> query_cover(int u, int v)
@@ -127,7 +128,7 @@ void cover(int id, int delta)
   p[v].push_add(delta);
 }
 
-void erase_edge(int id)
+int erase_edge(int id)
 {
   see("erase_edge", id, u[id], v[id]);
   cm_assert(p[u[id]].find_root() == p[v[id]].find_root());
@@ -135,6 +136,7 @@ void erase_edge(int id)
   int eid = n + id;
   p[u[id]].make_root(); p[eid].access(); p[eid].splay(); p[eid].s[0] = p[u[id]].f = nullptr; p[eid].push_up();
   p[v[id]].make_root(); p[eid].access(); p[eid].splay(); p[eid].s[0] = p[v[id]].f = nullptr; p[eid].push_up();
+  retutn 0;
 }
 
 int main()
@@ -171,7 +173,7 @@ restart:
           erase_edge(l);
         else
           cover(l, -1);
-        l++;
+        l += 1;
         goto restart;
       }
     }
