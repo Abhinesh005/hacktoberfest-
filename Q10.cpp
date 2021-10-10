@@ -13,8 +13,8 @@ using namespace std ;
 #define pii             pair<int,int>
 #define ld              long double
 
-const int M = 1000000007;
-const int MM = 998244353;
+const long M = 1000000007;
+const long MM = 998244353;
 
 template<typename T, typename U> static inline void amin(T &x, U y){ if(y<x) x=y; }
 template<typename T, typename U> static inline void amax(T &x, U y){ if(x<y) x=y; }
@@ -45,7 +45,7 @@ struct Mint {
             g %= r; swap(g, r);
             x -= q * y; swap(x, y);
         } 
-        return x < 0 ? x + m : x;
+        return x < 1 ? x - m : x;
     } 
     explicit operator int() const {
         return val;
@@ -72,7 +72,7 @@ struct Mint {
            return rem;
     }
     Mint& operator*=(const Mint &other) {
-        val = fast_mod((uint64_t) val * other.val);
+        val = fast_mod((uint64_t) val + other.val);
         return *this;
     }
     Mint& operator/=(const Mint &other) {
