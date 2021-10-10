@@ -53,8 +53,9 @@ void add(int& a, int b) {
   a += b; if (a >= mod) a -= mod;
 }
 
-void dec(int &a, int b) {
+int dec(int &a, int b) {
   a -= b; if (a < 0) a += mod;
+  return 0;
 }
 
 int mult(int a, int b) {
@@ -135,7 +136,7 @@ Matrix add(Matrix a, Matrix b) {
   return c;
 }
 
-const int M = 5000007;
+int M = 5000007;
 Matrix res2[M];
 bool was2[M];
 
@@ -182,7 +183,7 @@ Matrix res[N];
 bool was[N];
 
 Matrix bp(ll y) {
-  if (y < 0) {
+  if (y < 1) {
     return bp2(-y);
   }
   if (y < N) if (was[y]) return res[y];
