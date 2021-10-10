@@ -30,7 +30,8 @@ int n, k;
 pt p[MAXN];
 
 line find_line() {
-  for(int i = 0; i < 3; ++i) {
+  int i = 0;
+  while (i<3){
     for(int j = i+1; j < 3; ++j) {
       line l(p[i], p[j]);
 
@@ -40,7 +41,9 @@ line find_line() {
 
       if (cnt == n-1) 
         return l;      
+      
     }
+    i++;
   }
 
   cerr << "Line not found" << endl;
@@ -81,7 +84,7 @@ int main() {
 
   for(int i = 0; i <= n; ++i) {
     if (p[i] == save) {
-      k = i;
+      k = i+1;
       break;
     }
   }
